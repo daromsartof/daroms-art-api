@@ -1,12 +1,13 @@
-import { PrismaClient } from "@prisma/client";
-import { dateTimeScalar } from "../services/scalar.js";
 
-const prisma = new PrismaClient();
+import { dateTimeScalar } from "../services/scalar.js";
+import mutation_resolver from "./mutations/mutation.resolver.js";
+import query_resolver from "./querys/query.resolver.js";
+
+
 
 const resolvers = {
-    Query: {
-        allUsers: () => prisma.user.findMany()
-    },
+    Query: query_resolver,
+    Mutation: mutation_resolver,
     DateTime: dateTimeScalar,
 };
 

@@ -15,15 +15,35 @@ model User {
   email     String    @unique
   name      String
   firstName String?
-  bio       String?
+  bio       String?    @db.LongText
   birthday  DateTime?
   degree    String?
-  skils     Skils[]
 }
 
+model Sk_Category {
+  id Int @id @default(autoincrement())
+  name String
+  skils Skils[]
+}
 model Skils {
   id       Int  @id @default(autoincrement())
   name String
-  authorId Int
-  author   User @relation(fields: [authorId], references: [id])
+  logo_path String?
+  sk_category_id Int
+  sk_category Sk_Category @relation(fields: [sk_category_id], references: [id])
+}
+
+model Pf_Category{
+  id Int @id @default(autoincrement())
+  name String
+  portfolios PortFolio[]
+}
+model PortFolio {
+  id Int @id @default(autoincrement())
+  name String
+  description String?
+  link String?
+  path String?
+  pf_category_id Int
+  pf_category Pf_Category @relation(fields: [pf_category_id], references: [id])
 }
