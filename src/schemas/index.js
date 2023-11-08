@@ -39,7 +39,7 @@ const shemas = `#graphql
 
     type Query {
         user: User
-        skilsByCategory(category_id: Int): Sk_Category
+        skilsByCategory(category_id: Int): Skils
         allSkils: [Skils]
         skCategories: [Sk_Category]
         portfolioByCategory(category_id: Int): [PortFolio]
